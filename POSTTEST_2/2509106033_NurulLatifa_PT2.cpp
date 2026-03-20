@@ -136,6 +136,7 @@ int fibonacciSearch(Hewan* arr, int n, int target) {
     cout << "\n  -- Proses Fibonacci Search (ID: " << target << ") --\n";
 
     while (fib > 1) {
+        // Iterasi: tentukan indeks yang diperiksa = offset + fib2
         int i = offset + fib2;
         if (i >= n) i = n - 1;
 
@@ -143,15 +144,18 @@ int fibonacciSearch(Hewan* arr, int n, int target) {
              << " (ID: " << (arr + i)->id << ") ";
 
         if ((arr + i)->id == target) {
+            // Iterasi selesai: elemen ditemukan
             cout << "=> COCOK\n";
             return i;
         } else if ((arr + i)->id < target) {
+            // Iterasi: elemen terlalu kecil, eliminasi bagian kiri, geser offset ke kanan
             cout << "=> terlalu kecil, cari kanan\n";
             fib  = fib1;
             fib1 = fib2;
             fib2 = fib - fib1;
             offset = i;
         } else {
+            // Iterasi: elemen terlalu besar, eliminasi bagian kanan, perkecil range
             cout << "=> terlalu besar, cari kiri\n";
             fib  = fib2;
             fib1 = fib1 - fib2;
